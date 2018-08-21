@@ -1,5 +1,6 @@
 const Gpio = require('pigpio').Gpio
 const HttpClient = require('./http-client')
+require('dotenv').config()
 
 // The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
 const MICROSECONDS_PER_CM = 1e6/34321 
