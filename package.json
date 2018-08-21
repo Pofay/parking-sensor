@@ -1,0 +1,19 @@
+{
+  "name": "distance-sensor",
+  "version": "1.0.0",
+  "description": "Distance Sensor Code for Parking in NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "keywords": [
+    "Iot",
+    "Parking",
+    "Sensors"
+  ],
+  "author": "Gian Carlo I. Gilos",
+  "license": "ISC",
+  "dependencies": {
+    "rpio": "^0.9.22"
+  }
+}
