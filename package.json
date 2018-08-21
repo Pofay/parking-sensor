@@ -14,6 +14,7 @@
   "author": "Gian Carlo I. Gilos",
   "license": "ISC",
   "dependencies": {
-    "rpio": "^0.9.22"
+    "moment": "^2.22.2",
+    "pigpio": "^1.1.2"
   }
 }
