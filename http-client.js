@@ -24,8 +24,9 @@ class ClosedState {
     }
 }
 class HttpClient {
-    constructor() {
+    constructor(axios) {
 	this.state = new OpenedState()
+	this.axios = axios;
     }
 
     sendClosed() {
@@ -37,10 +38,21 @@ class HttpClient {
     }
 
     sendOpenRequest(data) {
-	console.log(data)
+	this.axios.post('http://localhost:3000/parking', { taken: 0 })
+	.then((res) => {
+	    console.log(res.status)
+	}).catch((err) => {
+	    console.error(err)
+	})
     }
+
     sendClosedRequest(data) {
-	console.log(data)
+	this.axios.post('http://localhost:3000/parking', { taken: 1 })
+	    .then((res) => {
+		console.log(res.status)
+	    }).catch((err) => {
+		console.error(err)
+	    })
     }
 }
 
