@@ -23,9 +23,9 @@ const watchHCSR04 = () => {
       const endTick = tick 
       const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
       const distance = diff / 2 / MICROSECONDS_PER_CM
-      if(distance <= 5.08) 
+      if(distance <= process.env.MAXIMUM_DISTANCE) 
 	client.sendClosed()
-      else 
+      else if(distance > process.env.MAXIMUM_DISTANCE)
 	client.sendOpen()
     }
   }) 

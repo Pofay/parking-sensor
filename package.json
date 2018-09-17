@@ -4,7 +4,7 @@
   "description": "Distance Sensor Code for Parking in NodeJS.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit"
+    "start": "node sensor.js"
   },
   "keywords": [
     "Iot",

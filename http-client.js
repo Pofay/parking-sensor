@@ -1,3 +1,5 @@
+const buildUrl = (host, port) => 'http://'+ host + ':' + port
+
 class OpenedState {
     constructor() {
     }
@@ -38,7 +40,7 @@ class HttpClient {
     }
 
     sendOpenRequest(data) {
-	this.axios.post('http://localhost:3000/parking', { taken: 0 })
+	this.axios.post(buildUrl(process.env.HOST, process.env.PORT) + '/parking', { taken: 0 })
 	.then((res) => {
 	    console.log(res.status)
 	}).catch((err) => {
@@ -47,7 +49,7 @@ class HttpClient {
     }
 
     sendClosedRequest(data) {
-	this.axios.post('http://localhost:3000/parking', { taken: 1 })
+	this.axios.post(buildUrl(process.env.HOST, process.env.PORT) + '/parking', { taken: 1 })
 	    .then((res) => {
 		console.log(res.status)
 	    }).catch((err) => {
