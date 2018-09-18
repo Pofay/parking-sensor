@@ -26,9 +26,10 @@ class ClosedState {
     }
 }
 class HttpClient {
-    constructor(axios) {
+    constructor(axios, parkingLotId) {
 	this.state = new OpenedState()
 	this.axios = axios;
+	this.parkingLotId = parkingLotId
     }
 
     sendClosed() {
@@ -40,7 +41,8 @@ class HttpClient {
     }
 
     sendOpenRequest(data) {
-	this.axios.post(buildUrl(process.env.HOST, process.env.PORT) + '/parking', { taken: 0 })
+	console.log(data)
+	this.axios.put(buildUrl(process.env.HOST, process.env.PORT) + '/parking_lot/status', { id: this.parkingLotId, status: 0 })
 	.then((res) => {
 	    console.log(res.status)
 	}).catch((err) => {
@@ -49,7 +51,8 @@ class HttpClient {
     }
 
     sendClosedRequest(data) {
-	this.axios.post(buildUrl(process.env.HOST, process.env.PORT) + '/parking', { taken: 1 })
+	console.log(data)
+	this.axios.put(buildUrl(process.env.HOST, process.env.PORT) + '/parking_lot/status', { id: this.parkingLotId, status: 1})
 	    .then((res) => {
 		console.log(res.status)
 	    }).catch((err) => {

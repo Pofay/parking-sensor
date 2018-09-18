@@ -11,29 +11,30 @@ const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true})
 
 trigger.digitalWrite(0)  // Make sure trigger is low
 
-const client = new HttpClient(axios)
+const client = new HttpClient(axios, process.env.LOT_ID)
 
 const watchHCSR04 = () => {
-  let startTick 
+    console.log('Starting...')
+    let startTick 
 
-  echo.on('alert', (level, tick) => {
-    if (level == 1) {
-      startTick = tick 
-    } else {
-      const endTick = tick 
-      const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
-      const distance = diff / 2 / MICROSECONDS_PER_CM
-      if(distance <= process.env.MAXIMUM_DISTANCE) 
-	client.sendClosed()
-      else if(distance > process.env.MAXIMUM_DISTANCE)
-	client.sendOpen()
-    }
-  }) 
+    echo.on('alert', (level, tick) => {
+	if (level == 1) {
+	    startTick = tick 
+	} else {
+	    const endTick = tick 
+	    const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
+	    const distance = diff / 2 / MICROSECONDS_PER_CM
+	    if(distance <= process.env.MAXIMUM_DISTANCE) 
+		client.sendClosed()
+	    else if(distance > process.env.MAXIMUM_DISTANCE)
+		client.sendOpen()
+	}
+    }) 
 } 
 
 watchHCSR04() 
 
 // Trigger a distance measurement once per second
 setInterval(() => {
-  trigger.trigger(10, 1)  // Set trigger high for 10 microseconds
+    trigger.trigger(10, 1)  // Set trigger high for 10 microseconds
 }, 1000) 
