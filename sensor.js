@@ -9,6 +9,8 @@ const MICROSECONDS_PER_CM = 1e6/34321
 const trigger = new Gpio(23, {mode: Gpio.OUTPUT}) 
 const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true}) 
 
+const LED = new Gpio(26, { mode: Gpio.OUTPUT })
+
 trigger.digitalWrite(0)  // Make sure trigger is low
 
 const client = new HttpClient(axios, process.env.LOT_ID)
@@ -24,10 +26,14 @@ const watchHCSR04 = () => {
 	    const endTick = tick 
 	    const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
 	    const distance = diff / 2 / MICROSECONDS_PER_CM
-	    if(distance <= process.env.MAXIMUM_DISTANCE) 
+	    if(distance <= process.env.MAXIMUM_DISTANCE) {
 		client.sendClosed()
-	    else if(distance > process.env.MAXIMUM_DISTANCE)
+		LED.digitalWrite(1)
+	    }
+	    else if(distance > process.env.MAXIMUM_DISTANCE) {
 		client.sendOpen()
+		LED.digitalWrite(0)
+	    }
 	}
     }) 
 } 
