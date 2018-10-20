@@ -4,11 +4,11 @@ class OpenedState {
     constructor() {
     }
 
-    open(context) {
+    vacant(context) {
     }
 
-    close(context) {
-	context.sendClosedRequest('I am Closed')
+    occupied(context) {
+	context.sendOccupiedRequest('Lot is Occupied')
 	context.state = new ClosedState()
     }
 }
@@ -17,12 +17,12 @@ class ClosedState {
     constructor() {
     }
 
-    open(context) {
-	context.sendOpenRequest('I am Opened')
+    vacant(context) {
+	context.sendVacantRequest('Lot is Vacant')
 	context.state = new OpenedState()
     }
 
-    close(context) {
+    occupied(context) {
     }
 }
 class HttpClient {
@@ -32,15 +32,15 @@ class HttpClient {
 	this.parkingLotId = parkingLotId
     }
 
-    sendClosed() {
-	this.state.close(this)
+    sendOccupied() {
+	this.state.occupied(this)
     }
 
-    sendOpen() {
-	this.state.open(this)
+    sendVacant() {
+	this.state.vacant(this)
     }
 
-    sendOpenRequest(data) {
+    sendVacantRequest(data) {
 	console.log(data)
 	this.axios.put(buildUrl(process.env.HOST, process.env.PORT) + '/parking_lot/status', { id: this.parkingLotId, status: 0 })
 	.then((res) => {
@@ -50,7 +50,7 @@ class HttpClient {
 	})
     }
 
-    sendClosedRequest(data) {
+    sendOccupiedRequest(data) {
 	console.log(data)
 	this.axios.put(buildUrl(process.env.HOST, process.env.PORT) + '/parking_lot/status', { id: this.parkingLotId, status: 1})
 	    .then((res) => {

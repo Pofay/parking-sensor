@@ -1,4 +1,5 @@
 const Gpio = require('pigpio').Gpio
+const ParkingSignage = require('./parking-signage')
 const HttpClient = require('./http-client')
 const Lcd = require('lcd')
 const axios = require('axios')
@@ -12,8 +13,9 @@ const MICROSECONDS_PER_CM = 1e6/34321
 const trigger = new Gpio(23, {mode: Gpio.OUTPUT}) 
 const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true}) 
 
-const OpenLed = new Gpio(21, { mode: Gpio.OUTPUT })
-const ClosedLed = new Gpio(26, { mode: Gpio.OUTPUT })
+const vacantLed = new Gpio(21, { mode: Gpio.OUTPUT })
+const occupiedLed = new Gpio(26, { mode: Gpio.OUTPUT })
+const signage = new ParkingSignage(vacantLed, occupiedLed)
 
 
 trigger.digitalWrite(0)  // Make sure trigger is low
@@ -34,21 +36,18 @@ const watchHCSR04 = () => {
 	    const endTick = tick 
 	    const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
 	    const distance = diff / 2 / MICROSECONDS_PER_CM
-	    lcd.clear()
 	    if(distance <= process.env.MAXIMUM_DISTANCE) {
-		client.sendClosed()
-		ClosedLed.digitalWrite(1)
-		OpenLed.digitalWrite(0)
+		client.sendOccupied()
+		signage.showOccupied()
 	    }
 	    else if(distance > process.env.MAXIMUM_DISTANCE) {
-		client.sendOpen()
-		ClosedLed.digitalWrite(0)
-		OpenLed.digitalWrite(1)
+		client.sendVacant()
+		signage.showVacant()
 	    }
 	    lcd.setCursor(0,0)
 	    lcd.print('Dist. to target', (err) => {
 		lcd.setCursor(0,1)
-		lcd.print(`${distance.toFixed(3)} cm`)
+		lcd.print(`${distance.toFixed(2)} cm`)
 	    })
 	}
     }) 
