@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^6.0.0",
+    "lcd": "^2.0.4",
     "moment": "^2.22.2",
     "pigpio": "^1.1.2"
   }
