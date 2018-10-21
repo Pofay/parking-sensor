@@ -16,15 +16,22 @@ const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true})
 const vacantLed = new Gpio(21, { mode: Gpio.OUTPUT })
 const occupiedLed = new Gpio(26, { mode: Gpio.OUTPUT })
 const signage = new ParkingSignage(vacantLed, occupiedLed)
-
+const client = new HttpClient(axios, process.env.LOT_ID, signage)
 
 trigger.digitalWrite(0)  // Make sure trigger is low
-
-const client = new HttpClient(axios, process.env.LOT_ID)
 
 lcd.on('ready',() => {
     lcd.print('Start Measuring')
 })
+
+const showDistance = distance =>  {
+    lcd.clear()
+    lcd.setCursor(0,0)
+    lcd.print('Dist. to target', (err) => {
+	lcd.setCursor(0,1)
+	lcd.print(`${distance.toFixed(2)} cm`)
+    })
+}
 
 const watchHCSR04 = () => {
     let startTick 
@@ -38,17 +45,11 @@ const watchHCSR04 = () => {
 	    const distance = diff / 2 / MICROSECONDS_PER_CM
 	    if(distance <= process.env.MAXIMUM_DISTANCE) {
 		client.sendOccupied()
-		signage.showOccupied()
 	    }
 	    else if(distance > process.env.MAXIMUM_DISTANCE) {
 		client.sendVacant()
-		signage.showVacant()
 	    }
-	    lcd.setCursor(0,0)
-	    lcd.print('Dist. to target', (err) => {
-		lcd.setCursor(0,1)
-		lcd.print(`${distance.toFixed(2)} cm`)
-	    })
+	    showDistance(distance)
 	}
     }) 
 } 
@@ -58,4 +59,4 @@ watchHCSR04()
 // Trigger a distance measurement once per second
 setInterval(() => {
     trigger.trigger(10, 1)  // Set trigger high for 10 microseconds
-}, 1000) 
+}, 2000) 
