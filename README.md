@@ -20,4 +20,4 @@ Libraries used:
 [ultrasonic-sensor]: https://to-be-added
 [pigpio]: https://github.com/fivdi/pigpio
 [axios]: https://to-be-added
-[gif]: https://giphy.com/gifs/5WISnaYjos3EBXg6MS/html5
+[gif]: https://media.giphy.com/media/5WISnaYjos3EBXg6MS/giphy.gif
