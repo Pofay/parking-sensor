@@ -7,7 +7,7 @@ There are two LEDs that signal whether (hypothetically) the lot is vacant or occ
 * Led at Pin 21 (Vacant)
 * Led at Pin 26 (Occupied)
 
-[The Device in Action][gif]
+![The Device in Action][gif]
 
 Libraries used:
 
