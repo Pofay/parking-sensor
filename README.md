@@ -7,7 +7,7 @@ There are two LEDs that signal whether (hypothetically) the lot is vacant or occ
 * Led at Pin 21 (Vacant)
 * Led at Pin 26 (Occupied)
 
-![The Device in Action][gif]
+![The Device in Action](https://media.giphy.com/media/5WISnaYjos3EBXg6MS/giphy.gif)
 
 Libraries used:
 
@@ -20,4 +20,4 @@ Libraries used:
 [ultrasonic-sensor]: https://to-be-added
 [pigpio]: https://github.com/fivdi/pigpio
 [axios]: https://to-be-added
-[gif]: https://media.giphy.com/media/5WISnaYjos3EBXg6MS/giphy.gif
+
