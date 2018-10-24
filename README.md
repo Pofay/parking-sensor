@@ -8,6 +8,23 @@ Using a [Raspberry Pi 3][rpi3] with an attached [Ultrasonic Sensor (HC-SR04)][ul
 
 It also shows the current distance of the target through an [LCD][lcd].
 
+# Schematic
+
+![Schematic](assets/schematic.png)
+
+# Materials Used
+
+* [Raspberry Pi 3][rpi3]
+* [T-Cobbler][cobbler]
+* 1x 10K ohms potentiometer (R1) (I've used a Rotary Potentiometer)
+* 3x 220 ohms resistor (R2, R5, R6)
+* 1x Breadboard (I've used 2 since I needed more space)
+* 1x 1k ohms resistor (R3)
+* 1x 2k ohms resistor (R4)
+* 2x LED (Blue & Red)
+* [LCD Display][lcd]
+* [HC-SR04 Ultrasonic Sensor][ultrasonic-sensor]
+
 # Environment Settings used
 
     LOT_ID= // corresponding parking lot id of this sensor
@@ -42,3 +59,4 @@ Libraries used:
 [gif]: assets/in-action.gif
 [rpi3]: https://www.raspberrypi.org/products/raspberry-pi-3-model-b/
 [api]: https://github.com/Pofay/parking-app-api
+[cobbler]: https://www.adafruit.com/product/2028
