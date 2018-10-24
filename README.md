@@ -6,7 +6,7 @@ This is the hardware component for my Capstone 2 project.
 
 Using a [Raspberry Pi 3][rpi3] with an attached [Ultrasonic Sensor (HC-SR04)][ultrasonic-sensor] it sends a PUT request to the [Parking Api][api] if the current distance of target vehicle is close or less than the set distance in an `.env` file.
 
-It also shows the current distance of the target through an [LCD][lcd].
+It also shows the current distance of the target through an [LCD][display].
 
 # Schematic
 
@@ -22,7 +22,7 @@ It also shows the current distance of the target through an [LCD][lcd].
 * 1x 1k ohms resistor (R3)
 * 1x 2k ohms resistor (R4)
 * 2x LED (Blue & Red)
-* [LCD Display][lcd]
+* [LCD Display][display]
 * [HC-SR04 Ultrasonic Sensor][ultrasonic-sensor]
 
 # Environment Settings used
@@ -53,10 +53,11 @@ Libraries used:
 * [Axios][axios] 
 
 [lcd]: https://github.com/fivdi/lcd
-[ultrasonic-sensor]: https://to-be-added
+[ultrasonic-sensor]: https://www.adafruit.com/product/3942
 [pigpio]: https://github.com/fivdi/pigpio
 [axios]: https://to-be-added
 [gif]: assets/in-action.gif
 [rpi3]: https://www.raspberrypi.org/products/raspberry-pi-3-model-b/
 [api]: https://github.com/Pofay/parking-app-api
 [cobbler]: https://www.adafruit.com/product/2028
+[display]: https://www.amazon.com/lcd-display-16x2/s?page=1&rh=i%3Aaps%2Ck%3Alcd%20display%2016x2
