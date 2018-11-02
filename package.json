@@ -1,7 +1,7 @@
 {
-  "name": "distance-sensor",
+  "name": "parking-sensor",
   "version": "1.0.0",
-  "description": "Distance Sensor Code for Parking in NodeJS.",
+  "description": "Using a HC-SR-04 as a parking Sensor in NodeJS",
   "main": "index.js",
   "scripts": {
     "start": "node sensor.js"
