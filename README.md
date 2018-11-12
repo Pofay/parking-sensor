@@ -2,7 +2,7 @@
 
 This is the hardware component for my Capstone 2 project.
 
-![System Architecture](assets/System-architecture.png)
+![System Architecture](https://www.draw.io/?lightbox=1&highlight=FFFFFF&edit=_blank&layers=1&nav=1#G13QoKVFLz_SjSRXhuieXg8EnZn2bs_wNL)
 
 Using a [Raspberry Pi 3][rpi3] with an attached [Ultrasonic Sensor (HC-SR04)][ultrasonic-sensor] it sends a PUT request to the [Parking Api][api] if the current distance of target vehicle is close or less than the set distance in an `.env` file.
 
