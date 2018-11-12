@@ -61,4 +61,4 @@ Libraries used:
 [api]: https://github.com/Pofay/parking-app-api
 [cobbler]: https://www.adafruit.com/product/2028
 [display]: https://www.amazon.com/lcd-display-16x2/s?page=1&rh=i%3Aaps%2Ck%3Alcd%20display%2016x2
-[system-architecture]: https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Application%20Architecture#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D13QoKVFLz_SjSRXhuieXg8EnZn2bs_wNL%26export%3Ddownload
+[system-architecture]: assets/App-Architecture.png
