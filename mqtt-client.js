@@ -42,13 +42,13 @@ class MqttClient {
     sendVacantRequest(data) {
 	console.log(data)
 	const payload = { lotName: this.parkingLotName, status: 1 }
-	client.publish('parkingLot/status-change', JSON.stringify(payload))
+	this.client.publish('parkingLot/status-change', JSON.stringify(payload))
     }
 
     sendOccupiedRequest(data) {
 	console.log(data)
 	const payload = { lotName: this.parkingLotName, status: 1 }
-	client.publish('parkingLot/status-change', JSON.stringify(payload))
+	this.client.publish('parkingLot/status-change', JSON.stringify(payload))
     }
 }
 module.exports = MqttClient

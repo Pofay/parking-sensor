@@ -3,7 +3,10 @@ require('dotenv').config()
 const MqttClient = require('./mqtt-client')
 const Lcd = require('lcd')
 const mqtt = require('mqtt')
-const client = mqtt.connect('mqtt://' + `{process.env.HOST}:${process.env.PORT}`)
+const client = mqtt.connect('mqtt://' + `${process.env.HOST}:${process.env.PORT}`)
+client.on('connect', () => {
+    console.log('Now Connected')
+})
 
 const configuredClient = new MqttClient(client, process.env.LOT_NAME)
 const lcd = new Lcd({ rs: process.env.RS, e: process.env.E, data: [process.env.DB4, process.env.DB5, process.env.DB6, process.env.DB7], cols: 16, rows:2})
@@ -39,6 +42,7 @@ const watchHCSR04 = () => {
 	    const endTick = tick 
 	    const diff = (endTick >> 0) - (startTick >> 0)  // Unsigned 32 bit arithmetic
 	    const distance = diff / 2 / MICROSECONDS_PER_CM
+	    console.log(distance)
 	    if(distance <= process.env.MAXIMUM_DISTANCE) {
 		configuredClient.sendOccupied()
 	    }
