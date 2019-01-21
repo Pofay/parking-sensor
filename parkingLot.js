@@ -24,7 +24,7 @@ class OccupiedState {
     }
 }
 
-class MqttClient {
+class ParkingLot{
     constructor(client, parkingLotName) {
 	this.state = new VacantState()
 	this.client = client
@@ -41,7 +41,7 @@ class MqttClient {
 
     sendVacantRequest(data) {
 	console.log(data)
-	const payload = { lotName: this.parkingLotName, status: 1 }
+	const payload = { lotName: this.parkingLotName, status: 0 }
 	this.client.publish('parkingLot/status-change', JSON.stringify(payload))
     }
 
@@ -51,4 +51,4 @@ class MqttClient {
 	this.client.publish('parkingLot/status-change', JSON.stringify(payload))
     }
 }
-module.exports = MqttClient
+module.exports = ParkingLot
